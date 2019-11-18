@@ -11,22 +11,20 @@ import AVFoundation
 import Photos
 import AssetsLibrary
 
-
-
 class LBXPermissions: NSObject {
 
     //MARK: ----获取相册权限
     static func authorizePhotoWith(comletion: @escaping (Bool) -> Void) {
         let granted = PHPhotoLibrary.authorizationStatus()
         switch granted {
-        case PHAuthorizationStatus.authorized:
+        case .authorized:
             comletion(true)
-        case PHAuthorizationStatus.denied, PHAuthorizationStatus.restricted:
+        case .denied, .restricted:
             comletion(false)
-        case PHAuthorizationStatus.notDetermined:
+        case .notDetermined:
             PHPhotoLibrary.requestAuthorization({ status in
                 DispatchQueue.main.async {
-                    comletion(status == PHAuthorizationStatus.authorized)
+                    comletion(status == .authorized)
                 }
             })
         @unknown default:
@@ -36,7 +34,7 @@ class LBXPermissions: NSObject {
     
     //MARK: ---相机权限
     static func authorizeCameraWith(completion: @escaping (Bool) -> Void) {
-        let granted = AVCaptureDevice.authorizationStatus(for: AVMediaType.video)
+        let granted = AVCaptureDevice.authorizationStatus(for: .video)
         switch granted {
         case .authorized:
             completion(true)
@@ -45,7 +43,7 @@ class LBXPermissions: NSObject {
         case .restricted:
             completion(false)
         case .notDetermined:
-            AVCaptureDevice.requestAccess(for: AVMediaType.video, completionHandler: { (granted: Bool) in
+            AVCaptureDevice.requestAccess(for: .video, completionHandler: { (granted: Bool) in
                 DispatchQueue.main.async {
                     completion(granted)
                 }

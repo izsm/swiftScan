@@ -10,16 +10,12 @@ import UIKit
 import AVFoundation
 
 public struct LBXScanResult {
-    
     /// 码内容
     public var strScanned: String?
-    
     /// 扫描图像
     public var imgScanned: UIImage?
-    
     /// 码的类型
     public var strBarCodeType: String?
-
     /// 码在图像中的位置
     public var arrayCorner: [AnyObject]?
 

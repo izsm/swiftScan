@@ -95,13 +95,10 @@ open class LBXScanViewController: UIViewController {
                                          strongSelf.handleCodeResult(arrayResult: arrayResult)
             })
         }
-
         // 结束相机等待提示
         qRScanView?.deviceStopReadying()
-
         // 开始扫描动画
         qRScanView?.startScanAnimation()
-
         // 相机运行
         scanObj?.start()
     }
@@ -167,17 +164,14 @@ extension LBXScanViewController: UIImagePickerControllerDelegate, UINavigationCo
             handleCodeResult(arrayResult: arrayResult)
         }
     }
-    
 }
 
 //MARK: - 私有方法
 private extension LBXScanViewController {
-    
     func showMsg(title: String?, message: String?) {
         let alertController = UIAlertController(title: nil, message: message, preferredStyle: .alert)
         let alertAction = UIAlertAction(title: NSLocalizedString("OK", comment: "OK"), style: .default, handler: nil)
         alertController.addAction(alertAction)
         present(alertController, animated: true, completion: nil)
     }
-    
 }

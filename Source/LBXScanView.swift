@@ -9,31 +9,22 @@
 import UIKit
 
 open class LBXScanView: UIView {
-    
     // 扫码区域各种参数
     var viewStyle = LBXScanViewStyle()
-
     // 扫码区域
     var scanRetangleRect = CGRect.zero
-
     // 线条扫码动画封装
     var scanLineAnimation: LBXScanLineAnimation?
-
     // 网格扫码动画封装
     var scanNetAnimation: LBXScanNetAnimation?
-    
     // 线条在中间位置，不移动
     var scanLineStill: UIImageView?
-
     // 启动相机时 菊花等待
     var activityView: UIActivityIndicatorView?
-
     // 启动相机中的提示文字
     var labelReadying: UILabel?
-
     // 记录动画状态
     var isAnimationing = false
-    
     /**
     初始化扫描界面
     - parameter frame:  界面大小，一般为视频显示区域
@@ -43,13 +34,12 @@ open class LBXScanView: UIView {
     */
     public init(frame: CGRect, vstyle: LBXScanViewStyle) {
         viewStyle = vstyle
-
         switch viewStyle.anmiationStyle {
-        case LBXScanViewAnimationStyle.LineMove:
-            scanLineAnimation = LBXScanLineAnimation.instance()
-        case LBXScanViewAnimationStyle.NetGrid:
-            scanNetAnimation = LBXScanNetAnimation.instance()
-        case LBXScanViewAnimationStyle.LineStill:
+        case .LineMove:
+            scanLineAnimation = .instance()
+        case .NetGrid:
+            scanNetAnimation = .instance()
+        case .LineStill:
             scanLineStill = UIImageView()
             scanLineStill?.image = viewStyle.animationImage
         default:
@@ -58,18 +48,14 @@ open class LBXScanView: UIView {
 
         var frameTmp = frame
         frameTmp.origin = CGPoint.zero
-
         super.init(frame: frameTmp)
-
         backgroundColor = UIColor.clear
     }
     
     override init(frame: CGRect) {
         var frameTmp = frame
         frameTmp.origin = CGPoint.zero
-
         super.init(frame: frameTmp)
-
         backgroundColor = UIColor.clear
     }
     
@@ -369,7 +355,6 @@ open class LBXScanView: UIView {
             labelReadying = nil
         }
     }
-
 }
 
 //MARK: - 公开方法

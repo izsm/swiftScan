@@ -23,7 +23,6 @@ public enum LBXScanViewPhotoframeAngleStyle {
     case On // 在矩形框的4个角上，覆盖
 }
 
-
 public struct LBXScanViewStyle {
     
     // MARK: - 中心位置矩形框
